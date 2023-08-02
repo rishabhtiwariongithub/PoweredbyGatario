@@ -1,0 +1,11 @@
+DELIMITER //
+CREATE TRIGGER reset_sno
+BEFORE INSERT ON logindetails
+FOR EACH ROW
+BEGIN
+    IF NEW.sno >= 100 THEN
+        SET NEW.sno = 1;
+    END IF;
+END;
+//
+DELIMITER ;

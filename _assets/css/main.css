@@ -1,0 +1,90 @@
+/*
+  Main Stylesheet
+  description: write all of the site major component here
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #F0F2F5;
+  font-family: 'Roboto', sans-serif;
+}
+hr {
+  border: 1px solid #ddd;
+}
+
+.container-auth {
+  background-color: #fff;
+  padding: 24px 12px;
+}
+.container-auth .title {
+  text-align: center;
+}
+.container-auth .card-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+
+.btn {
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-primary {
+  background-color: #1877f2;
+  color: #fff;
+}
+.btn-green {
+  background-color: #42b72a;
+  color: #fff;
+}
+
+
+/* add or overwrite styling for desktop and beyond! */
+@media (min-width: 1024px) {
+  .container-auth {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #F0F2F5;
+    padding: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container-auth .title {
+    margin-right: 48px;
+    padding-bottom: 64px;
+    text-align: left;
+  }
+  .container-auth h1 {
+    font-size: 52px;
+  }
+  .container-auth h5 {
+    font-size: 22px;
+    font-weight: normal;
+  }
+  .container-auth .card-form {
+    background-color: #fff;
+    padding: 24px 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    border-radius: 8px;
+    max-width: 600px;
+    height: max-content;
+  }
+}

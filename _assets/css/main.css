@@ -42,6 +42,7 @@ hr {
 
 
 .topbar {
+  position: relative;
   top: 0;
   left: 0;
   z-index: 100;
@@ -100,6 +101,43 @@ hr {
 .topbar__toolbar > button, .topbar__toolbar > a {
   cursor: pointer;
   margin-left: 8px;
+}
+.topbar #search-results, .topbar #tooltip-profile {
+  box-shadow: 0 12px 12px rgb(150, 150, 150), inset 0 0 0 0 rgb(150, 150, 150);
+  display: none;
+  position: absolute;
+  padding-top: 72px;
+  top: 0;
+  left: 0;
+  z-index: 110;
+  width: 100%;
+}
+.topbar #search-results.active, .topbar #tooltip-profile.active {
+  display: block;
+}
+.topbar #tooltip-profile {
+  right: 0;
+  left: auto;
+  top: 60px;
+  padding-top: 16px;
+}
+.topbar #tooltip-profile > a {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  padding: 12px 0;
+  width: 100%;
+  font-size: 14px;
+  color: black;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+.topbar #tooltip-profile > a:hover {
+  background-color: #F0F2F5;
 }
 
 
@@ -275,6 +313,8 @@ hr {
     height: 60px;
   }
   .topbar__title-desktop {
+    position: relative;
+    z-index: 120;
     display: flex;
   }
   .topbar__title-mobile {
@@ -287,6 +327,9 @@ hr {
   }
   .topbar__toolbar {
     display: flex;
+  }
+  .topbar #search-results, .topbar #tooltip-profile {
+    width: 320px;
   }
 
   .sidebar {

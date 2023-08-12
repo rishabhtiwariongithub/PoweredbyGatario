@@ -4,18 +4,18 @@
 
   session_start();
 
-  // if (!isset($_SESSION['user_sno'])) {
-  //   // User is not logged in, redirect them to the login page or show a login form.
-  //   header("Location: {$config->url('auth/login.php')}");
-  //   exit();
-  // }
+  if (!isset($_SESSION['user_sno'])) {
+    // User is not logged in, redirect them to the login page or show a login form.
+    header("Location: {$config->url('auth/login.php')}");
+    exit();
+  }
 
   // be sure to remove the "?? 'string here'" later
-  $user_sno = $_SESSION['user_sno'] ?? '';
-  $user_firstname = $_SESSION['user_firstname'] ?? 'Person Name';
-  $user_lastname = $_SESSION['user_lastname'] ?? '';
-  $user_email = $_SESSION['user_email'] ?? '';
-  $user_username = $_SESSION['user_username'] ?? 'Person Name';
+  $user_sno = $_SESSION['user_sno'];
+  $user_firstname = $_SESSION['user_firstname'];
+  $user_lastname = $_SESSION['user_lastname'];
+  $user_email = $_SESSION['user_email'];
+  $user_username = $_SESSION['user_username'];
 
   $user_photo = '103960940_1636313769867969_452954297756824385_n.jpg';
 
@@ -113,7 +113,7 @@
         <div id="photo-option">
           <span style="color: green;" class="material-icons">photo_library</span>
           <span>Photo</span>
-          <form id="submitform">
+          <form id="submit-form">
             <input type="file" name="Image" id="file-input" style="display: none;"/>
           </form>
         </div>
@@ -147,39 +147,13 @@
 
 
 <script>
-  // Function to open the file picker when the "Photo" option is clicked
-  function openFilePicker() {
-    const fileInput = document.getElementById('file-input');
-    fileInput.click();
-  }
-
-  // Function to handle the selected file
-  function handleFileSelected(event) {
-    const selectedFile = event.target.files[0];
-    console.log('Selected file:', selectedFile.name);
-  }
-
-  // Function to fetch search results
-  function fetchSearchResults(searchTerm) {
-    $.ajax({
-      url: "../php/ajax_frnd_search.php",
-      type: "POST",
-      data: {search: searchTerm},
-      success: function(data) {
-        $("#search-results").html(data).addClass('show');
-      }
-    });
-  }
-
-  // ==========================================================================
-
   $(document).ready(function() {
-    $("#submitform").on("click",function(e){
+    $("#submit-form").on("click",function(e){
       e.preventDefault();
       const formdata = new FormData(this);
 
       $.ajax({
-        url: "upload.php",
+        url: "<?= $config->url('_ajax/upload-image.php') ?>",
         type: "POST",
         data: formdata,
         contentType: false,
@@ -201,7 +175,7 @@
     $("#search").on("keyup", function(e) {
       const search_term = $(this).val().trim();
       if (search_term === "") {
-        $("#search-results").removeClass('show');
+        $("#search-results").removeClass('active');
       } else {
         fetchSearchResults(search_term);
       }
